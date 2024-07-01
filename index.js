@@ -99,7 +99,6 @@ const app = express();
 app.use(cors({
     origin: '*',
     methods: ['GET', 'POST', 'PUT'],
-    allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 app.options('*', cors());
@@ -111,7 +110,6 @@ app.use(bodyParser.json());
 const PORT = process.env.PORT || 3001;
 const dataFilePath = path.join(__dirname, 'data.json');
 
-// Function to read data from file
 function readDataFromFile() {
     try {
         if (fs.existsSync(dataFilePath)) {
@@ -131,7 +129,6 @@ app.get('/', (req, res) => {
     res.send('Welcome to the Patient Appointment API!');
 });
 
-// POST endpoint to save appointment data
 app.post('/api/appointment', async (req, res) => {
     try {
         console.log('Received request body:', req.body);
@@ -170,7 +167,6 @@ app.post('/api/appointment', async (req, res) => {
     }
 });
 
-// GET endpoint to fetch all appointment data
 app.get('/api/appointment', (req, res) => {
     try {
         const data = readDataFromFile();
